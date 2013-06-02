@@ -1,0 +1,52 @@
+﻿@using TransAppWebSite.Utilities
+@model TransAppWebSite.Models.Event
+@{
+    ViewBag.Title = "Create Event";
+}
+
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title</h1>
+            </hgroup>
+            
+        </div>
+    </section>
+}
+
+<article>
+
+@using (Html.BeginForm("New", "Events", FormMethod.Post))
+{
+    @Html.Label("Text: ") 
+    @Html.TextBoxFor(m => m.Text)
+    <br/>
+    @Html.Label("InputType: ")
+    @Html.TextBoxFor(m => m.InputType)
+    <br/>
+    @Html.Label("TaskId: ")
+    @Html.TextBoxFor(m => m.TaskId)
+    <br/>@*
+    @Html.Label("Time: ")
+    @Html.TextBoxFor(m => m.Time.ToString())
+    *@<br/>
+    @Html.Label("UserId: ")
+    @Html.TextBoxFor(m => m.UserId)
+    <br/>
+    @Html.Label("EventType: ")
+    @Html.TextBoxFor(m => m.EventType)
+    
+    @Html.HiddenFor(m => m.Time)  
+    @Html.HiddenFor(m => m.RowStatus)
+    @Html.HiddenFor(m => m.Id)
+
+    <br />
+    <input type="Submit"  id='EditEvent' value='Create' />
+}
+<br />
+<br />
+@Html.ActionLink("Events", "Index")
+<br />
+@Html.ActionLink("Home", "Index", "Home")
+</article>
