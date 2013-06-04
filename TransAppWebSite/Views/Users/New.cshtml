@@ -1,0 +1,61 @@
+﻿@using TransAppWebSite.Utilities
+@model TransAppWebSite.Models.User
+@{
+    ViewBag.Title = "Create User";
+}
+
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title</h1>
+            </hgroup>
+            
+        </div>
+    </section>
+}
+
+<article>
+
+@using (Html.BeginForm("New", "Users", FormMethod.Post))
+{
+    @Html.Label("First Name: ") 
+    @Html.TextBoxFor(m => m.FisrtName)
+    <br/>
+    @Html.Label("Last Name: ")
+    @Html.TextBoxFor(m => m.LastName)
+     <br/>
+    @Html.Label("Last Name: ")
+    @Html.TextBoxFor(m => m.LastName)
+     <br/>
+    @Html.Label("User Name: ")
+    @Html.TextBoxFor(m => m.UserName)
+    <br/>
+    @Html.Label("Phone Number: ")
+    @Html.TextBoxFor(m => m.PhoneNumber)
+     <br/>
+    @Html.Label("Email: ")
+    @Html.TextBoxFor(m => m.Email)
+    <br/>@*
+    @Html.Label("Time: ")
+    @Html.TextBoxFor(m => m.Time.ToString())
+    *@<br/>
+    @Html.Label("Company Id: ")
+    @Html.TextBoxFor(m => m.CompanyId)
+    <br/>
+    @Html.Label("Role: ")
+    @Html.TextBoxFor(m => m.Role)
+    
+    @Html.HiddenFor(m => m.TimeCreated)  
+    @Html.HiddenFor(m => m.RowStatus)
+    @Html.HiddenFor(m => m.Id)
+
+    <br />
+    <input type="Submit"  id='CreateUser' value='Update' />
+}
+<br />
+<br />
+@Html.ActionLink("Users", "Index")
+<br />
+@Html.ActionLink("Home", "Index", "Home")
+</article>

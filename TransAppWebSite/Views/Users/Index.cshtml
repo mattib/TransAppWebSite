@@ -1,6 +1,10 @@
-﻿@{
+﻿@using TransAppWebSite.Utilities
+@model TransAppWebSite.Models.UsersModel
+@{
     ViewBag.Title = "Users";
 }
+
+
 @section featured {
     <section class="featured">
         <div class="content-wrapper">
@@ -11,3 +15,10 @@
         </div>
     </section>
 }
+
+@Html.ActionLink("Create New User", "New")
+<br />
+<br />
+@Html.UsersGrid(Model.Users)
+<br />
+This is a <a href="http://eventapi.apphb.com/api/user">link</a> to the User Api.

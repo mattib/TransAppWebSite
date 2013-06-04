@@ -10,6 +10,7 @@ using Microsoft.Web.WebPages.OAuth;
 using WebMatrix.WebData;
 using TransAppWebSite.Filters;
 using TransAppWebSite.Models;
+using TransAppWebSite.DataSources;
 
 namespace TransAppWebSite.Controllers
 {
@@ -32,13 +33,25 @@ namespace TransAppWebSite.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult Login(LoginModel model, string returnUrl)
         {
-            if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
+            var usersDataSource = new UsersDataSource();
+            var user = usersDataSource.GetUser(model.UserName);
+            if (user != null && user.Password == model.Password)
             {
-                return RedirectToLocal(returnUrl);
+                return RedirectToLocal("Home");
             }
+            else 
+            {
+                ModelState.AddModelError("", "The user name or password provided is incorrect.");
+                return View(model);
+            }
+
+            //if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
+            //{
+            //    return RedirectToLocal(returnUrl);
+            //}
 
             // If we got this far, something failed, redisplay form
             ModelState.AddModelError("", "The user name or password provided is incorrect.");

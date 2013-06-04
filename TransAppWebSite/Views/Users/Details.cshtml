@@ -1,0 +1,69 @@
+﻿@using TransAppWebSite.Utilities
+@model TransAppWebSite.Models.User
+@{
+    ViewBag.Title = "User Details";
+}
+
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title</h1>
+            </hgroup>
+            
+        </div>
+    </section>
+}
+
+    @Html.Label("ID :") 
+
+    @Html.Label(Model.Id.ToString())
+
+    <br />
+
+    @Html.Label("Firts Name :") 
+    
+    @Html.Label(Model.FisrtName)
+
+    <br />
+    
+    @Html.Label("Last Name :") 
+    
+    @Html.Label(Model.LastName)
+
+    <br />
+
+    @Html.Label("User Name :") 
+    
+    @Html.Label(Model.UserName)
+
+    <br />
+
+    @Html.Label("Phone Number :") 
+    
+    @Html.Label(Model.PhoneNumber)
+    
+    <br />
+
+    @Html.Label("Email :") 
+    <label for="email"> @Model.Email</label>
+   
+
+    <br />
+      
+    @Html.Label("Time Created :") 
+
+    @Html.Label(Model.TimeCreated.ToLocalTime().ToString("dd-MM-yyyy hh:mm"))
+
+    <br />
+      
+    @Html.Label("Company Id :") 
+
+    @Html.Label(Model.CompanyId.ToString())
+
+    <br />
+      
+    @Html.Label("Role :") 
+
+    @Html.Label(Model.Role.ToString())
+    
