@@ -1,0 +1,62 @@
+﻿@using TransAppWebSite.Utilities
+@model TransAppWebSite.Models.Task
+@{
+    ViewBag.Title = "Create Task";
+}
+
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title</h1>
+            </hgroup>
+            
+        </div>
+    </section>
+}
+
+<article>
+
+@using (Html.BeginForm("New", "Tasks", FormMethod.Post))
+{
+    @Html.Label("Delivery Number: ") 
+    @Html.TextBoxFor(m => m.DeliveryNumber)
+    <br/>
+    @Html.Label("User Id: ")
+    @Html.TextBoxFor(m => m.UserId)
+     <br/>
+    @Html.Label("Company Id: ")
+    @Html.TextBoxFor(m => m.CompanyId)
+     <br/>
+    @Html.Label("Sender Address Id: ")
+    @Html.TextBoxFor(m => m.SenderAddressId)
+    <br/>
+    @Html.Label("Reciver Address Id: ")
+    @Html.TextBoxFor(m => m.ReciverAddressId)
+     <br/>
+    @Html.Label("Comment: ")
+    @Html.TextBoxFor(m => m.Comment)
+    <br/>@*
+    @Html.Label("Last Modified: ")
+    @Html.TextBoxFor(m => m.LastModified.ToString())
+    *@<br/>
+    @Html.Label("Company Id: ")
+    @Html.TextBoxFor(m => m.CompanyId)
+    <br/>
+    @Html.Label("Accepted: ")
+    @Html.TextBoxFor(m => m.Accepted)
+    
+    @Html.HiddenFor(m => m.LastModified)  
+    @Html.HiddenFor(m => m.RowStatus)
+    @Html.HiddenFor(m => m.Id)
+
+
+    <br />
+    <input type="Submit"  id='CreateTask' value='Update' />
+}
+<br />
+<br />
+@Html.ActionLink("Tasks", "Index")
+<br />
+@Html.ActionLink("Home", "Index", "Home")
+</article>

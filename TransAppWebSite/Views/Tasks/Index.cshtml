@@ -1,0 +1,24 @@
+﻿@using TransAppWebSite.Utilities
+@model TransAppWebSite.Models.TasksModel
+@{
+    ViewBag.Title = "Tasks";
+}
+
+
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title</h1>
+            </hgroup>
+            
+        </div>
+    </section>
+}
+
+@Html.ActionLink("Create New Task", "New")
+<br />
+<br />
+@Html.TasksGrid(Model.Tasks)
+<br />
+This is a <a href="http://eventapi.apphb.com/api/task">link</a> to the Task Api.

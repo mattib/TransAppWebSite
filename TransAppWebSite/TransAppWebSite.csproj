@@ -182,9 +182,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\TasksController.cs" />
     <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="DataSources\TasksDataSource.cs" />
     <Compile Include="DataSources\EventsDataSource.cs" />
     <Compile Include="DataSources\TramsAppDataSource.cs" />
     <Compile Include="DataSources\UsersDataSource.cs" />
@@ -193,12 +195,15 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\TasksModel.cs" />
+    <Compile Include="Models\Task.cs" />
     <Compile Include="Models\UsersModel.cs" />
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\EventsModel.cs" />
     <Compile Include="Models\EventType.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\TasksExtentions.cs" />
     <Compile Include="Utilities\UsersExtentions.cs" />
     <Compile Include="Utilities\EventsExtentions.cs" />
   </ItemGroup>
@@ -323,6 +328,10 @@
     <Content Include="Views\Users\New.cshtml" />
     <Content Include="Views\Users\Edit.cshtml" />
     <Content Include="Views\Users\Details.cshtml" />
+    <Content Include="Views\Tasks\Details.cshtml" />
+    <Content Include="Views\Tasks\Edit.cshtml" />
+    <Content Include="Views\Tasks\Index.cshtml" />
+    <Content Include="Views\Tasks\New.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

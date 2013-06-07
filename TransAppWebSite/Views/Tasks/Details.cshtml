@@ -1,0 +1,69 @@
+﻿@using TransAppWebSite.Utilities
+@model TransAppWebSite.Models.Task
+@{
+    ViewBag.Title = "Task Details";
+}
+
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title</h1>
+            </hgroup>
+            
+        </div>
+    </section>
+}
+
+    @Html.Label("ID :") 
+
+    @Html.Label(Model.Id.ToString())
+
+    <br />
+
+    @Html.Label("Delivery Number :") 
+    
+    @Html.Label(Model.DeliveryNumber)
+
+    <br />
+    
+    @Html.Label("User Id :") 
+    
+    @Html.Label(Model.UserId.ToString())
+
+    <br />
+
+    @Html.Label("Company Id :") 
+    
+    @Html.Label(Model.CompanyId.ToString())
+
+    <br />
+
+    @Html.Label("Sender Address Id") 
+    
+    @Html.Label(Model.SenderAddressId.ToString())
+    
+    <br />
+
+    @Html.Label("Reciver Address Id") 
+
+    @Html.Label(Model.ReciverAddressId.ToString())   
+
+    <br />
+      
+    @Html.Label("Last Modified :") 
+
+    @Html.Label(Model.LastModified.ToLocalTime().ToString("dd-MM-yyyy hh:mm"))
+
+    <br />
+      
+    @Html.Label("Comment :") 
+
+    @Html.Label(Model.Comment)
+
+    <br />
+      
+    @Html.Label("Accepted :") 
+
+    @Html.Label(Model.Accepted.ToString())
+    
