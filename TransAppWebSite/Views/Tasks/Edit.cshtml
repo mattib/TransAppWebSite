@@ -24,7 +24,7 @@
     <br/>
     @Html.Label("User Name: ")
 
-    @Html.DropDownListFor(m => m.User.Id, new SelectList(Model.UsersList.UsersOptions, "Id", "UserName", Model.UsersList.UsersOptions.First().Id))
+    @Html.DropDownListFor(m => m.User.Id, new SelectList(Model.UsersList.CompaniesUsersList, "Id", "FullName", Model.UsersList.CompaniesUsersList.First().Id))
 
      <br/>@*
     @Html.Label("Company Name: ")

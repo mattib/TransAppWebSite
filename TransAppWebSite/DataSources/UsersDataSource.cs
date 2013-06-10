@@ -85,7 +85,7 @@ namespace TransAppWebSite.DataSources
             {
                 var reqparm = new System.Collections.Specialized.NameValueCollection();
                 reqparm.Add("Id", user.Id.ToString());
-                reqparm.Add("FisrtName", user.FisrtName);
+                reqparm.Add("FirstName", user.FirstName);
                 reqparm.Add("LastName", user.LastName);
                 reqparm.Add("UserName", user.UserName);
                 reqparm.Add("PhoneNumber", user.PhoneNumber);

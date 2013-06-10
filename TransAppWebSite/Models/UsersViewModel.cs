@@ -18,23 +18,27 @@ namespace TransAppWebSite.Models
             {
                 userOptions.Add(new UserModel(user));
             }
-            UsersOptions = userOptions;                                       
+            CompaniesUsersList = userOptions;                                       
         }
         public class UserModel
         {
             public UserModel(User user)
             {
                 Id = user.Id;
-                UserName = user.UserName;
+                FirstName = user.FirstName;
+                LastName = user.LastName;
+                FullName = string.Format("{0} {1}", FirstName, LastName);
             }
             public int Id { get; set; }
-            public string UserName { get; set; }
+            public string FirstName { get; set; }
+            public string LastName { get; set; }
+            public string FullName { get; set; }
         }
 
-        public IEnumerable<UserModel> UsersOptions; 
+        public IEnumerable<UserModel> CompaniesUsersList; 
 
 
-        [DisplayName("User Name")]
-        public string UserName { get; set; }
+        [DisplayName("Full Name")]
+        public string FullName { get; set; }
     }
 }

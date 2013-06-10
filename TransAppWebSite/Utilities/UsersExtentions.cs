@@ -65,7 +65,7 @@ namespace TransAppWebSite.Utilities
                     writer.Write(user.Id.ToString());
                     writer.RenderEndTag();
                     writer.RenderBeginTag(HtmlTextWriterTag.Td);
-                    writer.Write(user.FisrtName);
+                    writer.Write(user.FirstName);
                     writer.RenderEndTag();
                     writer.RenderBeginTag(HtmlTextWriterTag.Td);
                     writer.Write(user.LastName);
