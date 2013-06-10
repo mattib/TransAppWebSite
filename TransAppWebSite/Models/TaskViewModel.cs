@@ -37,6 +37,7 @@ namespace TransAppWebSite.Models
             TaskStatus = (TaskStatus)task.TaskStatus;
             Company = new Company() { Name = "test", Id = 0 };
             UsersList = new UsersViewModel(task.CompanyId);
+            LastModified = task.LastModified;
         }
 
         private User GetUser(int userId)
