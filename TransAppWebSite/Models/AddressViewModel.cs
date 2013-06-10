@@ -5,8 +5,7 @@ using System.Web;
 
 namespace TransAppWebSite.Models
 {
-    public class TasksModel
+    public class AddressViewModel
     {
-        public TaskViewModel[] Tasks { get; set; } 
     }
 }

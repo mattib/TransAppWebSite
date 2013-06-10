@@ -26,7 +26,16 @@ namespace TransAppWebSite.Controllers
             var tasks = m_tasksDataSource.GetAllTasks();
 
             var tasksModel = new TasksModel();
-            tasksModel.Tasks = tasks.ToArray();
+
+            var taskList = new List<TaskViewModel>();
+
+            foreach (var task in tasks)
+            {
+                var taskViewModel = new TaskViewModel(task);
+                taskList.Add(taskViewModel);
+            }
+
+            tasksModel.Tasks = taskList.ToArray();
             return View(tasksModel);
         }
 
@@ -34,12 +43,13 @@ namespace TransAppWebSite.Controllers
         {
             var task = m_tasksDataSource.GetTask(id);
 
-            return View(task);
+            return View(new TaskViewModel(task));
         }
 
         [HttpPost]
-        public ActionResult Edit(Task task)
+        public ActionResult Edit(TaskViewModel taskViewModel)
         {
+            var task = taskViewModel.ToTask();
             m_tasksDataSource.SaveTask(task);
 
             return RedirectToAction("Index");

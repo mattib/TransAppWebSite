@@ -33,6 +33,21 @@ namespace TransAppWebSite.DataSources
             return users.ToArray();
         }
 
+        public User[] GetUsersByCompanyId(int companyId)
+        {
+            var result = string.Empty;
+            using (var client = new WebClient())
+            {
+                var userUrl = m_usersUrl + "/?comapnyId=" + companyId;
+                var data = client.OpenRead(userUrl);
+                var reader = new StreamReader(data);
+                result = reader.ReadToEnd();
+            }
+
+            var users = (List<User>)Newtonsoft.Json.JsonConvert.DeserializeObject(result, typeof(List<User>));
+            return users.ToArray();
+        }
+
         public User GetUser(int id)
         {
             var result = string.Empty;

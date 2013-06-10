@@ -1,5 +1,5 @@
 ﻿@using TransAppWebSite.Utilities
-@model TransAppWebSite.Models.Task
+@model TransAppWebSite.Models.TaskViewModel
 @{
     ViewBag.Title = "Edit Task";
 }
@@ -22,33 +22,41 @@
     @Html.Label("Delivery Number: ") 
     @Html.TextBoxFor(m => m.DeliveryNumber)
     <br/>
-    @Html.Label("User Id: ")
-    @Html.TextBoxFor(m => m.UserId)
-     <br/>
-    @Html.Label("Company Id: ")
-    @Html.TextBoxFor(m => m.CompanyId)
+    @Html.Label("User Name: ")
+
+    @Html.DropDownListFor(m => m.User.Id, new SelectList(Model.UsersList.UsersOptions, "Id", "UserName", Model.UsersList.UsersOptions.First().Id))
+
+     <br/>@*
+    @Html.Label("Company Name: ")
+    @Html.TextBoxFor(m => m.Company.Name)
      <br/>
     @Html.Label("Sender Address Id: ")
     @Html.TextBoxFor(m => m.SenderAddressId)
     <br/>
     @Html.Label("Reciver Address Id: ")
     @Html.TextBoxFor(m => m.ReciverAddressId)
-     <br/>
+     <br/>*@
+    
     @Html.Label("Comment: ")
+        
+    
     @Html.TextBoxFor(m => m.Comment)
+      
     <br/>@*
     @Html.Label("Last Modified: ")
     @Html.TextBoxFor(m => m.LastModified.ToString())
-    *@<br/>
+    <br/>
     @Html.Label("Company Id: ")
     @Html.TextBoxFor(m => m.CompanyId)
     <br/>
     @Html.Label("Accepted: ")
     @Html.TextBoxFor(m => m.Accepted)
-    
+    *@
     @Html.HiddenFor(m => m.LastModified)  
-    @Html.HiddenFor(m => m.RowStatus)
+    //@Html.HiddenFor(m => m.RowStatus)
     @Html.HiddenFor(m => m.Id)
+    @Html.HiddenFor(m => m.Company)
+    @Html.HiddenFor(m => m.Contact)
 
     <br />
     <input type="Submit"  id='EditTask' value='Update' />
