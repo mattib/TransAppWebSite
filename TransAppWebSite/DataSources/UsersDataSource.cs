@@ -92,7 +92,7 @@ namespace TransAppWebSite.DataSources
                 reqparm.Add("Email", user.Email);
                 reqparm.Add("ReferenceId", user.ReferenceId);
                 reqparm.Add("Password", user.Password);
-                reqparm.Add("CompanyId", user.CompanyId.ToString());
+                reqparm.Add("CompanyId", user.Company.Id.ToString());
                 reqparm.Add("Role", user.Role.ToString());
                 reqparm.Add("TimeCreated", user.TimeCreated.ToString());
                 reqparm.Add("LastModified", user.LastModified.ToString());

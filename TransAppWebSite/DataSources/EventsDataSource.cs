@@ -50,6 +50,7 @@ namespace TransAppWebSite.DataSources
 
         public void SaveEvent(Event eventItem)
         {
+            var json = Newtonsoft.Json.JsonConvert.SerializeObject(eventItem);
             var result = string.Empty;
             using (var client = new WebClient())
             {

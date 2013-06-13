@@ -33,10 +33,10 @@ namespace TransAppWebSite.Models
             Id = task.Id;
             DeliveryNumber = task.DeliveryNumber;
             Comment = task.Comment;
-            User = GetUser(task.UserId);
+            User = GetUser(task.Id);
             TaskStatus = (TaskStatus)task.TaskStatus;
             Company = new Company() { Name = "test", Id = 0 };
-            UsersList = new UsersViewModel(task.CompanyId);
+            UsersList = new UsersViewModel(task.Company.Id);
             LastModified = task.LastModified;
         }
 
@@ -74,7 +74,7 @@ namespace TransAppWebSite.Models
         {
             var task = new Task();
             task.Id = this.Id;
-            task.UserId = this.User.Id;
+            task.User.Id = this.User.Id;
             //task.CompanyId = this.Company.Id;
             //task.SenderAddressId = this.SenderAddress.Id;
             //task.ReciverAddressId = this.ReciverAddress.Id;

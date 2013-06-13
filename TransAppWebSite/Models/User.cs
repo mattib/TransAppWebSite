@@ -15,11 +15,11 @@ namespace TransAppWebSite.Models
         public string Email { get; set; }
         public string ReferenceId { get; set; }
         public string Password { get; set; }
-        public int CompanyId { get; set; }
-        public int Role { get; set; }
+        public Company Company { get; set; }
+        public int? Role { get; set; }
         public DateTime TimeCreated { get; set; }
         public DateTime LastModified { get; set; }
         public int RowStatus { get; set; }
-        public int Active { get; set; }
+        public int? Active { get; set; }
     }
 }

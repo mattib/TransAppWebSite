@@ -80,7 +80,7 @@ namespace TransAppWebSite.Utilities
                     writer.Write(user.Email);
                     writer.RenderEndTag();
                     writer.RenderBeginTag(HtmlTextWriterTag.Td);
-                    writer.Write(user.CompanyId.ToString());
+                    writer.Write(user.Company.Id.ToString());
                     writer.RenderEndTag();
                     writer.RenderBeginTag(HtmlTextWriterTag.Td);
                     writer.Write(user.Role.ToString());
