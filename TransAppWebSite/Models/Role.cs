@@ -5,8 +5,16 @@ using System.Web;
 
 namespace TransAppWebSite.Models
 {
-    public class EventsModel
+    public enum Role
     {
-        public EventViewModel[] Events { get; set; } 
+        ClientUser = 0,
+
+        PortalRead,
+
+        PortalEdit,
+
+        Admin,
+
+        AllAdmin
     }
 }

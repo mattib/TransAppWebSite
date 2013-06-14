@@ -1,7 +1,7 @@
 ﻿@using TransAppWebSite.Utilities
-@model TransAppWebSite.Models.User
+@model TransAppWebSite.Models.Contact
 @{
-    ViewBag.Title = "User Details";
+    ViewBag.Title = "Contact Details";
 }
 
 @section featured {
@@ -21,55 +21,46 @@
 
     <br />
 
-    @Html.Label("Firts Name :") 
+    @Html.Label("First Name :") 
     
     @Html.Label(Model.FirstName)
 
     <br />
-    
+      
     @Html.Label("Last Name :") 
-    
+
     @Html.Label(Model.LastName)
 
     <br />
+      
+    @Html.Label("Office Number :") 
 
-    @Html.Label("User Name :") 
-    
-    @Html.Label(Model.UserName)
-
-    <br />
-
-    @Html.Label("Phone Number :") 
-    
-    @Html.Label(Model.PhoneNumber)
+    @Html.Label(Model.OfficeNumber)
     
     <br />
+      
+    @Html.Label("Cell Number :") 
 
+    @Html.Label(Model.CellNumber)
+    
+    <br />
+      
     @Html.Label("Email :") 
     <label for="email"> @Model.Email</label>
+
+    @if (Model.Address != null)
+    {
+        <br />
+         @Html.Label("Address :")
+         <label for="address">@Html.ActionLink(string.Format("{0} {1}, {2}", Model.Address.StreetName, Model.Address.StreetNumber, Model.Address.City), "Details/" + Model.Address.Id, "Addresses")</label>
+    }
    
 
     <br />
-      
-    @Html.Label("Time Created :") 
-
-    @Html.Label(Model.TimeCreated.ToLocalTime().ToString("dd-MM-yyyy hh:mm"))
-
     <br />
-      
+
     @Html.Label("Last Modified :") 
 
     @Html.Label(Model.LastModified.ToLocalTime().ToString("dd-MM-yyyy hh:mm"))
 
     <br />
-      
-    @Html.Label("Company Name :") 
-
-    @Html.Label(Model.Company.Name)
-
-    <br />
-      
-    @Html.Label("Role :") 
-
-    @Html.Label(Model.Role.ToString())
-    

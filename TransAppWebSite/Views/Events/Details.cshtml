@@ -1,5 +1,5 @@
 ﻿@using TransAppWebSite.Utilities
-@model TransAppWebSite.Models.Event
+@model TransAppWebSite.Models.EventViewModel
 @{
     ViewBag.Title = "Event Details";
 }
@@ -35,13 +35,13 @@
       
     @Html.Label("Task Id :") 
 
-    @Html.Label(Model.TaskId.ToString())
+    @Html.Label(Model.Task.Id.ToString())
 
     <br />
       
     @Html.Label("User Id :") 
 
-    @Html.Label(Model.UserId.ToString())
+    @Html.Label(Model.User.Id.ToString())
     
     <br />
       

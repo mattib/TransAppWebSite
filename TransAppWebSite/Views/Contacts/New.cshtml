@@ -1,0 +1,69 @@
+﻿@using TransAppWebSite.Utilities
+@model TransAppWebSite.Models.Contact
+@{
+    ViewBag.Title = "Create Contact";
+}
+
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title</h1>
+            </hgroup>
+            
+        </div>
+    </section>
+}
+<article>
+
+@using (Html.BeginForm("Edit", "Contacts", FormMethod.Post))
+{
+    @Html.Label("First Name: ") 
+    @Html.TextBoxFor(m => m.FirstName)
+    <br/>
+    @Html.Label("Last Name: ")
+    @Html.TextBoxFor(m => m.LastName)
+    <br/>
+    @Html.Label("Office Number: ")
+    @Html.TextBoxFor(m => m.OfficeNumber)
+    <br/>
+    @Html.Label("Cell Number: ")
+    @Html.TextBoxFor(m => m.CellNumber)
+    <br/>
+    @Html.Label("Email: ")
+    @Html.TextBoxFor(m => m.Email)
+
+    <h3>@Html.Label("Adress: ")</h3>
+    <br/>
+    @Html.Label("Street Name: ") 
+    @Html.TextBoxFor(m => m.Address.StreetName)
+    <br/>
+    @Html.Label("Street Number: ")
+    @Html.TextBoxFor(m => m.Address.StreetNumber, new { @Value = (Model.Address.StreetNumber != null ?Model.Address.StreetNumber.ToString() :string.Empty) })
+    <br/>
+    @Html.Label("City: ")
+    @Html.TextBoxFor(m => m.Address.City)
+    <br/>
+    @Html.Label("District: ")
+    @Html.TextBoxFor(m => m.Address.District)
+    <br/>
+    @Html.Label("Country: ")
+    @Html.TextBoxFor(m => m.Address.Country)
+    <br/>
+    @Html.Label("Postal Code: ")
+    @Html.TextBoxFor(m => m.Address.PostalCode)
+    <br/>
+    
+    @Html.HiddenFor(m => m.LastModified)  
+    @Html.HiddenFor(m => m.RowStatus)
+    @Html.HiddenFor(m => m.Id)
+
+    <br />
+    <input type="Submit"  id='CreateContact' value='Create' />
+}
+<br />
+<br />
+@Html.ActionLink("Contacts", "Index")
+<br />
+@Html.ActionLink("Home", "Index", "Home")
+</article>

@@ -11,7 +11,7 @@ namespace TransAppWebSite.Utilities
 {
     public static class EventsExtentions
     {
-        public static HtmlString EventsGrid(this HtmlHelper htmlHelper, Event[] events)
+        public static HtmlString EventsGrid(this HtmlHelper htmlHelper, EventViewModel[] events)
         {
 
             var stringWriter = new StringWriter();
@@ -63,10 +63,10 @@ namespace TransAppWebSite.Utilities
                     writer.Write(item.Time.ToString("dd-MM-yyyy HH:mm"));
                     writer.RenderEndTag();
                     writer.RenderBeginTag(HtmlTextWriterTag.Td);
-                    writer.Write(item.UserId.ToString());
+                    writer.Write(item.User.Id.ToString());
                     writer.RenderEndTag();
                     writer.RenderBeginTag(HtmlTextWriterTag.Td);
-                    writer.Write(item.TaskId.ToString());
+                    writer.Write(item.Task.Id.ToString());
                     writer.RenderEndTag();
                     writer.RenderBeginTag(HtmlTextWriterTag.Td);
                     var tt = (EventType)item.EventType;

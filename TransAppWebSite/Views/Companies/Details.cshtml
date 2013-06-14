@@ -1,0 +1,70 @@
+﻿@using TransAppWebSite.Utilities
+@model TransAppWebSite.Models.Company
+@{
+    ViewBag.Title = "Company Details";
+}
+
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title</h1>
+            </hgroup>
+            
+        </div>
+    </section>
+}
+
+    @Html.Label("ID :") 
+
+    @Html.Label(Model.Id.ToString())
+
+    <br />
+
+    @Html.Label("Name :") 
+    
+    @Html.Label(Model.Name)
+
+    <br />
+      
+    @Html.Label("Company User Name :") 
+
+    @Html.Label(Model.CompanyUserName)
+
+    <br />
+
+     @if (Model.Address != null)
+    {
+        <br />
+         @Html.Label("Address :")
+         <label for="address">@Html.ActionLink(string.Format("{0} {1}, {2}", Model.Address.StreetName, Model.Address.StreetNumber, Model.Address.City), "Details/" + Model.Address.Id, "Addresses")</label>
+    }
+   
+    <br />
+
+    @Html.Label("Created :") 
+
+    @Html.Label(Model.Created.ToLocalTime().ToString("dd-MM-yyyy"))
+
+    <br />
+
+    @Html.Label("Last Modified :") 
+
+    @Html.Label(Model.LastModified.ToLocalTime().ToString("dd-MM-yyyy hh:mm"))
+
+    <br />
+      
+    @Html.Label("Company Info :") 
+    @if (Model.CompanyInfo != null)
+    {
+        @Html.Label(Model.CompanyInfo)
+    }
+    else
+    {
+        @Html.Label(string.Empty)
+    }
+    
+    <br />
+
+
+    

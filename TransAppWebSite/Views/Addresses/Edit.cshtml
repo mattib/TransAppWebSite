@@ -1,0 +1,53 @@
+﻿@using TransAppWebSite.Utilities
+@model TransAppWebSite.Models.Address
+@{
+    ViewBag.Title = "Edit Address";
+}
+
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title</h1>
+            </hgroup>
+            
+        </div>
+    </section>
+}
+
+<article>
+
+@using (Html.BeginForm("Edit", "Addresses", FormMethod.Post))
+{
+    @Html.Label("Street Name: ") 
+    @Html.TextBoxFor(m => m.StreetName)
+    <br/>
+    @Html.Label("Street Number: ")
+    @Html.TextBoxFor(m => m.StreetNumber)
+    <br/>
+    @Html.Label("City: ")
+    @Html.TextBoxFor(m => m.City)
+    <br/>
+    @Html.Label("District: ")
+    @Html.TextBoxFor(m => m.District)
+    <br/>
+    @Html.Label("Country: ")
+    @Html.TextBoxFor(m => m.Country)
+    <br/>
+    @Html.Label("Postal Code: ")
+    @Html.TextBoxFor(m => m.PostalCode)
+    <br/>
+    
+    @Html.HiddenFor(m => m.LastModified)  
+    @Html.HiddenFor(m => m.RowStatus)
+    @Html.HiddenFor(m => m.Id)
+
+    <br />
+    <input type="Submit"  id='EditAddress' value='Update' />
+}
+<br />
+<br />
+@Html.ActionLink("Addresses", "Index")
+<br />
+@Html.ActionLink("Home", "Index", "Home")
+</article>

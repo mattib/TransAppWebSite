@@ -1,0 +1,56 @@
+﻿@using TransAppWebSite.Utilities
+@model TransAppWebSite.Models.Company
+@{
+    ViewBag.Title = "Edit Company";
+}
+
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title</h1>
+            </hgroup>
+            
+        </div>
+    </section>
+}
+
+<article>
+
+@using (Html.BeginForm("Edit", "Companies", FormMethod.Post))
+{
+    @Html.Label("Name: ") 
+    @Html.TextBoxFor(m => m.Name)
+    <br/>
+    @Html.Label("Company User Name: ")
+    @Html.TextBoxFor(m => m.CompanyUserName)
+    <br/>
+    @Html.Label("Company Info: ")
+    @Html.TextBoxFor(m => m.CompanyInfo)
+    <br/>
+   @Html.Label("Address :")
+    if (Model.Address != null)
+    {   
+        <label for="address">@Html.ActionLink(string.Format("{0} {1}, {2}", Model.Address.StreetName, Model.Address.StreetNumber, Model.Address.City), "Edit/" + Model.Address.Id, "Addresses")</label>
+    }
+    @*else
+    {
+        <label for="address">@Html.ActionLink("Create Address", "New", "Addresses")</label>
+    }*@
+    <br />
+    @Html.HiddenFor(m => m.Created)
+    @Html.HiddenFor(m => m.LastModified)  
+    @Html.HiddenFor(m => m.RowStatus)
+    @Html.HiddenFor(m => m.AmountOfTasksPerUser)
+    @Html.HiddenFor(m => m.AmountOfUsers)
+    @Html.HiddenFor(m => m.Id)
+
+    <br />
+    <input type="Submit"  id='EditCompany' value='Update' />
+}
+<br />
+<br />
+@Html.ActionLink("Companies", "Index")
+<br />
+@Html.ActionLink("Home", "Index", "Home")
+</article>

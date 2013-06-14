@@ -39,7 +39,7 @@ namespace TransAppWebSite.Utilities
                 writer.Write("Email");
                 writer.RenderEndTag();
                 writer.RenderBeginTag(HtmlTextWriterTag.Td);
-                writer.Write("Company Id");
+                writer.Write("Company Name");
                 writer.RenderEndTag();
                 writer.RenderBeginTag(HtmlTextWriterTag.Td);
                 writer.Write("Role");
@@ -80,7 +80,7 @@ namespace TransAppWebSite.Utilities
                     writer.Write(user.Email);
                     writer.RenderEndTag();
                     writer.RenderBeginTag(HtmlTextWriterTag.Td);
-                    writer.Write(user.Company.Id.ToString());
+                    writer.Write(user.Company.Name);
                     writer.RenderEndTag();
                     writer.RenderBeginTag(HtmlTextWriterTag.Td);
                     writer.Write(user.Role.ToString());

@@ -1,0 +1,24 @@
+﻿@using TransAppWebSite.Utilities
+@model TransAppWebSite.Models.AddressesModel
+@{
+    ViewBag.Title = "Addresses";
+}
+
+
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title</h1>
+            </hgroup>
+            
+        </div>
+    </section>
+}
+
+@Html.ActionLink("Create New Address", "New")
+<br />
+<br />
+@Html.AddressesGrid(Model.Addresses)
+<br />
+This is a <a href="http://transappapi.apphb.com/api/address">link</a> to the Address Api.

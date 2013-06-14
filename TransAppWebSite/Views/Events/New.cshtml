@@ -1,5 +1,5 @@
 ﻿@using TransAppWebSite.Utilities
-@model TransAppWebSite.Models.Event
+@model TransAppWebSite.Models.EventViewModel
 @{
     ViewBag.Title = "Create Event";
 }
@@ -26,13 +26,13 @@
     @Html.TextBoxFor(m => m.InputType)
     <br/>
     @Html.Label("TaskId: ")
-    @Html.TextBoxFor(m => m.TaskId)
+    @Html.TextBoxFor(m => m.Task.Id)
     <br/>@*
     @Html.Label("Time: ")
     @Html.TextBoxFor(m => m.Time.ToString())
     *@<br/>
     @Html.Label("UserId: ")
-    @Html.TextBoxFor(m => m.UserId)
+    @Html.TextBoxFor(m => m.User.Id)
     <br/>
     @Html.Label("EventType: ")
     @Html.TextBoxFor(m => m.EventType)

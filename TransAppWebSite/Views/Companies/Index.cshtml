@@ -1,0 +1,24 @@
+﻿@using TransAppWebSite.Utilities
+@model TransAppWebSite.Models.CompaniesModel
+@{
+    ViewBag.Title = "Companies";
+}
+
+
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title</h1>
+            </hgroup>
+            
+        </div>
+    </section>
+}
+
+@Html.ActionLink("Create New Company", "New")
+<br />
+<br />
+@Html.CompaniesGrid(Model.Companies)
+<br />
+This is a <a href="http://transappapi.apphb.com/api/company">link</a> to the Company Api.

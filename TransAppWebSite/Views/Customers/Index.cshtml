@@ -1,0 +1,24 @@
+﻿@using TransAppWebSite.Utilities
+@model TransAppWebSite.Models.CustomersModel
+@{
+    ViewBag.Title = "Customers";
+}
+
+
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title</h1>
+            </hgroup>
+            
+        </div>
+    </section>
+}
+
+@Html.ActionLink("Create New Customer", "New")
+<br />
+<br />
+@Html.CustomersGrid(Model.Customers)
+<br />
+This is a <a href="http://transappapi.apphb.com/api/customer">link</a> to the Customer Api.

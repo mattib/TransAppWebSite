@@ -1,5 +1,5 @@
 ﻿@using TransAppWebSite.Utilities
-@model TransAppWebSite.Models.Task
+@model TransAppWebSite.Models.TaskViewModel
 @{
     ViewBag.Title = "Task Details";
 }
@@ -24,33 +24,81 @@
     @Html.Label("Delivery Number :") 
     
     @Html.Label(Model.DeliveryNumber)
+    
+    @if (Model.User != null)
+    {
+        <br />
+         @Html.Label("User :")
+         <label for="user">@Html.ActionLink(string.Format("{0} {1}", Model.User.FirstName, Model.User.LastName), "Details/" + Model.User.Id, "Users")</label>
+    }
+
+   @if (Model.Company != null)
+    {
+        <br />
+         @Html.Label("Company :")
+         <label for="company">@Html.ActionLink(string.Format("{0}", Model.Company.Name), "Details/" + Model.Company.Id, "Companies")</label>
+    }
+   
+    @if (Model.SenderAddress != null)
+    {
+        <br />
+         @Html.Label("Sender Address :")
+         <label for="senderAddress">@Html.ActionLink(string.Format("{0} {1}, {2}", Model.SenderAddress.StreetName, Model.SenderAddress.StreetNumber, Model.SenderAddress.City), "Details/" + Model.SenderAddress.Id, "Addresses")</label>
+    }
+
+    @if (Model.ReciverAddress != null)
+    {
+        <br />
+         @Html.Label("Reciver Address :")
+         <label for="reciverAddress">@Html.ActionLink(string.Format("{0} {1}, {2}", Model.ReciverAddress.StreetName, Model.ReciverAddress.StreetNumber, Model.ReciverAddress.City), "Details/" + Model.ReciverAddress.Id, "Addresses")</label>
+    }
+
+    @if (Model.Contact != null)
+    {
+        <br />
+         @Html.Label("Contact :")
+         <label for="contact">@Html.ActionLink(string.Format("{0} {1}", Model.Contact.FirstName, Model.Contact.LastName), "Details/" + Model.Contact.Id, "Contacts")</label>
+    }
+   
+    <br />
+
+    @Html.Label("Task Status :") 
+
+    @Html.Label(Enum.GetName(Model.TaskStatus.GetType(), Model.TaskStatus))
+
+    <br />
+
+    @Html.Label("Time Created :") 
+
+    @Html.Label(Model.Created.ToLocalTime().ToString("dd-MM-yyyy hh:mm"))
+
+    <br />
+
+    
+    @Html.Label("Pick Up Time :")
+
+    @(Model.PickUpTime.HasValue ? Html.Label(Model.PickUpTime.Value.ToLocalTime().ToString("dd-MM-yyyy hh:mm")) : Html.Label(string.Empty))
+
+    <br />
+
+    @Html.Label("Delivery Time :") 
+
+    @(Model.DeliveryTime.HasValue ? Html.Label(Model.DeliveryTime.Value.ToLocalTime().ToString("dd-MM-yyyy hh:mm")) : Html.Label(string.Empty))
 
     <br />
     
-    @Html.Label("User Id :") 
-    
-    @Html.Label(Model.User.Id.ToString())
+    @Html.Label("Picked Up At :") 
+
+    @(Model.PickedUpAt.HasValue ? Html.Label(Model.PickedUpAt.Value.ToLocalTime().ToString("dd-MM-yyyy hh:mm")) : Html.Label(string.Empty))
 
     <br />
 
-    @Html.Label("Company Id :") 
-    
-    @Html.Label(Model.Company.Id.ToString())
+    @Html.Label("Delivered At :") 
+
+    @(Model.DeliveredAt.HasValue ? Html.Label(Model.DeliveredAt.Value.ToLocalTime().ToString("dd-MM-yyyy hh:mm")) : Html.Label(string.Empty))
 
     <br />
 
-    @Html.Label("Sender Address Id") 
-    
-    @Html.Label(Model.SenderAddress.Id.ToString())
-    
-    <br />
-
-    @Html.Label("Reciver Address Id") 
-
-    @Html.Label(Model.ReciverAddress.Id.ToString())   
-
-    <br />
-      
     @Html.Label("Last Modified :") 
 
     @Html.Label(Model.LastModified.ToLocalTime().ToString("dd-MM-yyyy hh:mm"))

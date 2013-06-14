@@ -5,8 +5,8 @@ using System.Web;
 
 namespace TransAppWebSite.Models
 {
-    public class EventsModel
+    public class CompaniesModel
     {
-        public EventViewModel[] Events { get; set; } 
+        public Company[] Companies { get; set; } 
     }
 }

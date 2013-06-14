@@ -1,0 +1,65 @@
+﻿@using TransAppWebSite.Utilities
+@model TransAppWebSite.Models.Address
+@{
+    ViewBag.Title = "Address Details";
+}
+
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title</h1>
+            </hgroup>
+            
+        </div>
+    </section>
+}
+
+ @Html.Label("ID :") 
+
+    @Html.Label(Model.Id.ToString())
+
+    <br />
+
+    @Html.Label("Street Name :") 
+    
+    @Html.Label(Model.StreetName)
+
+    <br />
+
+    @Html.Label("Street Number :") 
+    
+    @Html.Label(Model.StreetNumber.ToString())
+
+    <br />
+      
+    @Html.Label("City :") 
+
+    @Html.Label(Model.City)
+
+    <br />
+      
+    @Html.Label("District :") 
+
+    @Html.Label(Model.District ?? string.Empty)
+    
+    <br />
+
+    @Html.Label("Country :") 
+
+    @Html.Label(Model.Country)
+    
+    <br />
+
+    @Html.Label("Postal Code :") 
+
+    @Html.Label(Model.PostalCode)
+    
+    <br />
+
+    @Html.Label("Last Modified :") 
+
+    @Html.Label(Model.LastModified.ToLocalTime().ToString("dd-MM-yyyy hh:mm"))
+
+    <br />
+      

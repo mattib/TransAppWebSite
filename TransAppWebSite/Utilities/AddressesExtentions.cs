@@ -9,10 +9,11 @@ using TransAppWebSite.Models;
 
 namespace TransAppWebSite.Utilities
 {
-    public static class TasksExtentions
+    public static class AddressesExtentions
     {
-        public static HtmlString TasksGrid(this HtmlHelper htmlHelper, TaskViewModel[] tasks)
+        public static HtmlString AddressesGrid(this HtmlHelper htmlHelper, Address[] addresses)
         {
+
             var stringWriter = new StringWriter();
 
             using (var writer = new HtmlTextWriter(stringWriter))
@@ -21,89 +22,81 @@ namespace TransAppWebSite.Utilities
 
                 writer.RenderBeginTag(HtmlTextWriterTag.Tr);
                 writer.RenderBeginTag(HtmlTextWriterTag.Td);
-                writer.Write("Deliver Number");
+                writer.Write("Address Id");
                 writer.RenderEndTag();
                 writer.RenderBeginTag(HtmlTextWriterTag.Td);
-                writer.Write("User Name");
+                writer.Write("Street Name");
                 writer.RenderEndTag();
                 writer.RenderBeginTag(HtmlTextWriterTag.Td);
-                writer.Write("Company Name");
+                writer.Write("Street Number");
                 writer.RenderEndTag();
                 writer.RenderBeginTag(HtmlTextWriterTag.Td);
-                writer.Write("Sender Address");
+                writer.Write("City");
                 writer.RenderEndTag();
                 writer.RenderBeginTag(HtmlTextWriterTag.Td);
-                writer.Write("Reciver Address");
+                writer.Write("District");
                 writer.RenderEndTag();
                 writer.RenderBeginTag(HtmlTextWriterTag.Td);
-                writer.Write("Comment");
+                writer.Write("Country");
                 writer.RenderEndTag();
                 writer.RenderBeginTag(HtmlTextWriterTag.Td);
-                writer.Write("Status");
+                writer.Write("Postal Code");
                 writer.RenderEndTag();
                 writer.RenderBeginTag(HtmlTextWriterTag.Td);
                 writer.Write("Last Modified");
                 writer.RenderEndTag();
                 writer.RenderBeginTag(HtmlTextWriterTag.Td);
-                writer.Write("Task Details");
+                writer.Write("Event Details");
                 writer.RenderEndTag();
                 writer.RenderBeginTag(HtmlTextWriterTag.Td);
-                writer.Write("Update Task");
+                writer.Write("Update Event");
                 writer.RenderEndTag();
                 writer.RenderBeginTag(HtmlTextWriterTag.Td);
-                writer.Write("Delete Task");
+                writer.Write("Delete Event");
                 writer.RenderEndTag();
                 writer.RenderEndTag();
 
-                foreach (var task in tasks)
+                foreach (var address in addresses)
                 {
                     writer.RenderBeginTag(HtmlTextWriterTag.Tr);
                     writer.RenderBeginTag(HtmlTextWriterTag.Td);
-                    writer.Write(task.DeliveryNumber);
+                    writer.Write(address.Id.ToString());
                     writer.RenderEndTag();
                     writer.RenderBeginTag(HtmlTextWriterTag.Td);
-                    writer.AddAttribute(HtmlTextWriterAttribute.Href, "/Users/Details/" + task.User.Id);
-                    writer.RenderBeginTag(HtmlTextWriterTag.A);
-                    writer.Write(task.User.FirstName + " " + task.User.LastName);
-                    writer.RenderEndTag();
+                    writer.Write(address.StreetName);
                     writer.RenderEndTag();
                     writer.RenderBeginTag(HtmlTextWriterTag.Td);
-                    writer.AddAttribute(HtmlTextWriterAttribute.Href, "/Companies/Details/" + task.Company.Id);
-                    writer.RenderBeginTag(HtmlTextWriterTag.A);
-                    writer.Write(task.Company.Name);
-                    writer.RenderEndTag();
+                    writer.Write(address.StreetNumber.ToString());
                     writer.RenderEndTag();
                     writer.RenderBeginTag(HtmlTextWriterTag.Td);
-                    var senderAddressString = GetAddressString(task.SenderAddress);
-                    writer.Write(senderAddressString);
+                    writer.Write(address.City);
                     writer.RenderEndTag();
                     writer.RenderBeginTag(HtmlTextWriterTag.Td);
-                    var reciverAddressString = GetAddressString(task.ReciverAddress);
-                    writer.Write(reciverAddressString);
+                    writer.Write(address.District);
                     writer.RenderEndTag();
                     writer.RenderBeginTag(HtmlTextWriterTag.Td);
-                    writer.Write(task.Comment);
+                    writer.Write(address.Country);
                     writer.RenderEndTag();
                     writer.RenderBeginTag(HtmlTextWriterTag.Td);
-                    writer.Write(Enum.GetName(task.TaskStatus.GetType(), task.TaskStatus));
+                    writer.Write(address.PostalCode);
                     writer.RenderEndTag();
                     writer.RenderBeginTag(HtmlTextWriterTag.Td);
-                    writer.Write(task.LastModified.ToString("dd-MM-yyyy HH:mm"));
+                    writer.Write(address.LastModified.ToString("dd-MM-yyyy HH:mm"));
                     writer.RenderEndTag();
                     writer.RenderBeginTag(HtmlTextWriterTag.Td);
-                    writer.AddAttribute(HtmlTextWriterAttribute.Href, "/Tasks/Details/" + task.Id);
+                    writer.AddAttribute(HtmlTextWriterAttribute.Href, "/Addresses/Details/" + address.Id);
                     writer.RenderBeginTag(HtmlTextWriterTag.A);
                     writer.Write("Details");
                     writer.RenderEndTag();
                     writer.RenderEndTag();
                     writer.RenderBeginTag(HtmlTextWriterTag.Td);
-                    writer.AddAttribute(HtmlTextWriterAttribute.Href, "/Tasks/Edit/" + task.Id);
+                    writer.AddAttribute(HtmlTextWriterAttribute.Href, "/Addresses/Edit/" + address.Id);
                     writer.RenderBeginTag(HtmlTextWriterTag.A);
                     writer.Write("Update");
                     writer.RenderEndTag();
                     writer.RenderEndTag();
                     writer.RenderBeginTag(HtmlTextWriterTag.Td);
-                    writer.AddAttribute(HtmlTextWriterAttribute.Href, "/Tasks/Delete/" + task.Id);
+                    writer.AddAttribute(HtmlTextWriterAttribute.Href, "/Addresses/Delete/" + address.Id);
                     writer.RenderBeginTag(HtmlTextWriterTag.A);
                     writer.Write("Delete");
                     writer.RenderEndTag();
@@ -115,17 +108,5 @@ namespace TransAppWebSite.Utilities
 
             return new HtmlString(stringWriter.ToString());
         }
-
-        private static string GetAddressString(Address address)
-        {
-            var result = string.Empty;
-
-            if (address != null)
-            {
-                result = string.Format("{0} {1}, {2}", address.StreetName, address.StreetNumber, address.City);
-            }
-            return result;
-        }
-
     }
 }

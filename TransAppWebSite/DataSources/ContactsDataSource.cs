@@ -10,60 +10,60 @@ using TransAppWebSite.Models;
 
 namespace TransAppWebSite.DataSources
 {
-    public class EventsDataSource : TransAppDataSource
+    public class ContactsDataSource : TransAppDataSource
     {
-        private string m_eventsUrl;
+        private string m_contactsUrl;
 
-        public EventsDataSource()
+        public ContactsDataSource()
         {
-            m_eventsUrl = ApiServiceAddress + "/event";
+            m_contactsUrl = ApiServiceAddress + "/contact";
         }
 
-        public Event[] GetAllEvents()
+        public Contact[] GetAllContacts()
         {
             var result = string.Empty;
             using (var client = new WebClient())
             {
-                var data = client.OpenRead(m_eventsUrl);
+                var data = client.OpenRead(m_contactsUrl);
                 var reader = new StreamReader(data);
                 result = reader.ReadToEnd();
             }
 
-            var events = (List<Event>)Newtonsoft.Json.JsonConvert.DeserializeObject(result, typeof(List<Event>));
+            var contacts = (List<Contact>)Newtonsoft.Json.JsonConvert.DeserializeObject(result, typeof(List<Contact>));
 
-            return events.ToArray();
+            return contacts.ToArray();
         }
 
-        public Event GetEvent(int id)
+        public Contact GetContact(int id)
         {
             var result = string.Empty;
             using (var client = new WebClient())
             {
-                var eventUrl = m_eventsUrl + "/" + id;
+                var eventUrl = m_contactsUrl + "/" + id;
                 var data = client.OpenRead(eventUrl);
                 var reader = new StreamReader(data);
                 result = reader.ReadToEnd();
             }
 
-            var eventItem = (Event)Newtonsoft.Json.JsonConvert.DeserializeObject(result, typeof(Event));
-            return eventItem;
+            var contact = (Contact)Newtonsoft.Json.JsonConvert.DeserializeObject(result, typeof(Contact));
+            return contact;
         }
 
-        public void SaveEvent(Event eventItem)
+        public void SaveContact(Contact contact)
         {
-            var json = Newtonsoft.Json.JsonConvert.SerializeObject(eventItem, new IsoDateTimeConverter());
+            var json = Newtonsoft.Json.JsonConvert.SerializeObject(contact, new IsoDateTimeConverter());
             using (var client = new WebClient())
             {
                 client.Headers.Add("Content-Type", "application/json");
-                var responsebytes = client.UploadString(m_eventsUrl, "POST", json);
+                var responsebytes = client.UploadString(m_contactsUrl, "POST", json);
             }
         }
 
-        public void DeleteEvent(int id)
+        public void DeleteContact(int id)
         {
             using (var client = new WebClient())
             {
-                var eventUrl = m_eventsUrl + "/" + id;
+                var eventUrl = m_contactsUrl + "/" + id;
                 client.UploadString(eventUrl, "DELETE", string.Empty);
             }
         }

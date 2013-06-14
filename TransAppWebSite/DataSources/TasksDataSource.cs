@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Web;
+using Newtonsoft.Json.Converters;
 using TransAppWebSite.Models;
 
 namespace TransAppWebSite.DataSources
@@ -50,28 +51,11 @@ namespace TransAppWebSite.DataSources
 
         public void SaveTask(Task task)
         {
-            var result = string.Empty;
+            var json = Newtonsoft.Json.JsonConvert.SerializeObject(task, new IsoDateTimeConverter());
             using (var client = new WebClient())
             {
-                var reqparm = new System.Collections.Specialized.NameValueCollection();
-                reqparm.Add("Id", task.Id.ToString());
-                reqparm.Add("DeliveryNumber", task.DeliveryNumber);
-                reqparm.Add("UserId", task.User.Id.ToString());
-                reqparm.Add("CompanyId", task.Company.Id.ToString());
-                reqparm.Add("SenderAddressId", task.SenderAddress.Id.ToString());
-                reqparm.Add("ReciverAddressId", task.ReciverAddress.Id.ToString());
-                reqparm.Add("TaskStatus", task.TaskStatus.ToString());
-                reqparm.Add("Created", task.Created.ToString());
-                reqparm.Add("PickedUpAt", task.PickedUpAt.ToString());
-                reqparm.Add("DeliveredAt", task.DeliveredAt.ToString());
-                reqparm.Add("PickUpTime", task.PickUpTime.ToString());
-                reqparm.Add("DeliveryTime", task.DeliveryTime.ToString());
-                reqparm.Add("Comment", task.Comment.ToString());
-                reqparm.Add("ContactId", task.Contact.Id.ToString());
-                reqparm.Add("TaskType", task.TaskType.ToString());
-                reqparm.Add("DataExtention", task.DataExtention);
-                var responsebytes = client.UploadValues(m_tasksUrl, "POST", reqparm);
-                string responsebody = Encoding.UTF8.GetString(responsebytes);
+                client.Headers.Add("Content-Type", "application/json");
+                var responsebytes = client.UploadString(m_tasksUrl, "POST", json);
             }
         }
 

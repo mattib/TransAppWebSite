@@ -35,8 +35,13 @@ namespace TransAppWebSite.Models
             Comment = task.Comment;
             User = GetUser(task.Id);
             TaskStatus = (TaskStatus)task.TaskStatus;
-            Company = new Company() { Name = "test", Id = 0 };
-            UsersList = new UsersViewModel(task.Company.Id);
+            Company = User.Company;
+            UsersListList = new UsersListViewModel(task.Company.Id);
+            Created = task.Created;
+            PickedUpAt = task.PickedUpAt;
+            DeliveredAt = task.DeliveredAt;
+            PickUpTime = task.PickUpTime;
+            DeliveryTime = task.DeliveryTime;
             LastModified = task.LastModified;
         }
 
@@ -53,11 +58,11 @@ namespace TransAppWebSite.Models
         public Address SenderAddress { get; set; }
         public Address ReciverAddress { get; set; }
         public TaskStatus TaskStatus { get; set; }
-        //public DateTime Created { get; set; }
-        //public DateTime PickedUpAt { get; set; }
-        //public DateTime DeliveredAt { get; set; }
-        //public DateTime PickUpTime { get; set; }
-        //public DateTime DeliveryTime { get; set; }
+        public DateTime Created { get; set; }
+        public DateTime? PickedUpAt { get; set; }
+        public DateTime? DeliveredAt { get; set; }
+        public DateTime? PickUpTime { get; set; }
+        public DateTime? DeliveryTime { get; set; }
         public DateTime LastModified { get; set; }
         //public bool Accepted { get; set; }
         //public bool PackageType { get; set; }
@@ -68,7 +73,7 @@ namespace TransAppWebSite.Models
         //insert generic data in future
         //public string DataExtention { get; set; }
 
-        public UsersViewModel UsersList { get; set; }
+        public UsersListViewModel UsersListList { get; set; }
 
         public Task ToTask()
         {

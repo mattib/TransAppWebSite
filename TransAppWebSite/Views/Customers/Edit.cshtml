@@ -1,0 +1,58 @@
+﻿@using TransAppWebSite.Utilities
+@model TransAppWebSite.Models.Customer
+@{
+    ViewBag.Title = "Edit Customer";
+}
+
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title</h1>
+            </hgroup>
+            
+        </div>
+    </section>
+}
+
+<article>
+
+@using (Html.BeginForm("Edit", "Customers", FormMethod.Post))
+{
+    @Html.Label("Name: ") 
+    @Html.TextBoxFor(m => m.Name)
+    <br/>
+    @Html.Label("Address :")
+    if (Model.Address != null)
+    {   
+        <label for="address">@Html.ActionLink(string.Format("{0} {1}, {2}", Model.Address.StreetName, Model.Address.StreetNumber, Model.Address.City), "Edit/" + Model.Address.Id, "Addresses")</label>
+    }
+    @*else
+    {
+        <label for="address">@Html.ActionLink("Create Address", "New", "Addresses")</label>
+    }*@
+    <br/>
+    @Html.Label("Contact :")
+    if (Model.Contact != null)
+    {   
+        <label for="contact">@Html.ActionLink(string.Format("{0} {1}", Model.Contact.FirstName, Model.Contact.LastName), "Edit/" + Model.Contact.Id, "Contacts")</label>
+    }
+    @*else
+    {
+        <label for="address">@Html.ActionLink("Create Contact", "New", "Contacts")</label>
+    }*@
+   
+    <br />
+    @Html.HiddenFor(m => m.LastModified)  
+    @Html.HiddenFor(m => m.RowStatus)
+    @Html.HiddenFor(m => m.Id)
+
+    <br />
+    <input type="Submit"  id='EditCustomer' value='Update' />
+}
+<br />
+<br />
+@Html.ActionLink("Customers", "Index")
+<br />
+@Html.ActionLink("Home", "Index", "Home")
+</article>

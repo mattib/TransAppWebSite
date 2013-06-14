@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Web;
+using Newtonsoft.Json.Converters;
 using TransAppWebSite.Models;
 
 namespace TransAppWebSite.DataSources
@@ -80,26 +81,11 @@ namespace TransAppWebSite.DataSources
 
         public void SaveUser(User user)
         {
-            var result = string.Empty;
+            var json = Newtonsoft.Json.JsonConvert.SerializeObject(user, new IsoDateTimeConverter());
             using (var client = new WebClient())
             {
-                var reqparm = new System.Collections.Specialized.NameValueCollection();
-                reqparm.Add("Id", user.Id.ToString());
-                reqparm.Add("FirstName", user.FirstName);
-                reqparm.Add("LastName", user.LastName);
-                reqparm.Add("UserName", user.UserName);
-                reqparm.Add("PhoneNumber", user.PhoneNumber);
-                reqparm.Add("Email", user.Email);
-                reqparm.Add("ReferenceId", user.ReferenceId);
-                reqparm.Add("Password", user.Password);
-                reqparm.Add("CompanyId", user.Company.Id.ToString());
-                reqparm.Add("Role", user.Role.ToString());
-                reqparm.Add("TimeCreated", user.TimeCreated.ToString());
-                reqparm.Add("LastModified", user.LastModified.ToString());
-                reqparm.Add("RowStatus", user.RowStatus.ToString());
-                reqparm.Add("Active", user.Active.ToString());
-                var responsebytes = client.UploadValues(m_usersUrl, "POST", reqparm);
-                string responsebody = Encoding.UTF8.GetString(responsebytes);
+                client.Headers.Add("Content-Type", "application/json");
+                var responsebytes = client.UploadString(m_usersUrl, "POST", json);
             }
         }
 

@@ -26,21 +26,21 @@ namespace TransAppWebSite.Controllers
             var events = m_eventsDataSource.GetAllEvents();
 
             var eventsModel = new EventsModel();
-            eventsModel.Events = events.ToArray();
+            eventsModel.Events = events.Select(eventItem => new EventViewModel(eventItem)).ToArray();
             return View(eventsModel);
         }
 
         public ActionResult Edit(int id)
         {
             var eventItem = m_eventsDataSource.GetEvent(id);
-
-            return View(eventItem);
+            var eventViewModel = new EventViewModel(eventItem);
+            return View(eventViewModel);
         }
 
         [HttpPost]
-        public ActionResult Edit(Event eventItem)
+        public ActionResult Edit(EventViewModel eventItem)
         {
-            m_eventsDataSource.SaveEvent(eventItem);
+            m_eventsDataSource.SaveEvent(eventItem.ToEvent());
 
             return RedirectToAction("Index");
         }
@@ -48,14 +48,15 @@ namespace TransAppWebSite.Controllers
         public ActionResult New()
         {
             var eventItem = new Event();
-
-            return View(eventItem);
+            var eventViewModel = new EventViewModel(eventItem);
+            return View(eventViewModel);
         }
 
         [HttpPost]
-        public ActionResult New(Event eventItem)
+        public ActionResult New(EventViewModel eventItem)
         {
-            m_eventsDataSource.SaveEvent(eventItem);
+
+            m_eventsDataSource.SaveEvent(eventItem.ToEvent());
 
             return RedirectToAction("Index");
         }
@@ -70,8 +71,8 @@ namespace TransAppWebSite.Controllers
         public ActionResult Details(int id)
         {
             var eventItem = m_eventsDataSource.GetEvent(id);
-
-            return View(eventItem);
+            var eventViewModel = new EventViewModel(eventItem);
+            return View(eventViewModel);
         }
     }
 }

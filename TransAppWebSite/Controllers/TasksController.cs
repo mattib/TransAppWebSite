@@ -42,8 +42,8 @@ namespace TransAppWebSite.Controllers
         public ActionResult Edit(int id)
         {
             var task = m_tasksDataSource.GetTask(id);
-
-            return View(new TaskViewModel(task));
+            var taskViewModel = new TaskViewModel(task);
+            return View(taskViewModel);
         }
 
         [HttpPost]
@@ -58,13 +58,14 @@ namespace TransAppWebSite.Controllers
         public ActionResult New()
         {
             var task = new Task();
-
-            return View(task);
+            var taskViewModel = new TaskViewModel(task);
+            return View(taskViewModel);
         }
 
         [HttpPost]
-        public ActionResult New(Task task)
+        public ActionResult New(TaskViewModel taskViewModel)
         {
+            var task = taskViewModel.ToTask();
             m_tasksDataSource.SaveTask(task);
 
             return RedirectToAction("Index");
@@ -80,8 +81,8 @@ namespace TransAppWebSite.Controllers
         public ActionResult Details(int id)
         {
             var task = m_tasksDataSource.GetTask(id);
-
-            return View(task);
+            var taskViewModel = new TaskViewModel(task);
+            return View(taskViewModel);
         }
     }
 }
