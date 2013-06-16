@@ -25,6 +25,7 @@ namespace TransAppWebSite.Models
             TaskStatus = taskViewModel.TaskStatus;
             LastModified = taskViewModel.LastModified;
             Contact = taskViewModel.Contact;
+            RowStatus = taskViewModel.RowStatus;
         }
 
 
@@ -43,6 +44,7 @@ namespace TransAppWebSite.Models
             PickUpTime = task.PickUpTime;
             DeliveryTime = task.DeliveryTime;
             LastModified = task.LastModified;
+            RowStatus = task.RowStatus;
         }
 
         private User GetUser(int userId)
@@ -64,6 +66,7 @@ namespace TransAppWebSite.Models
         public DateTime? PickUpTime { get; set; }
         public DateTime? DeliveryTime { get; set; }
         public DateTime LastModified { get; set; }
+        public int RowStatus { get; set; }
         //public bool Accepted { get; set; }
         //public bool PackageType { get; set; }
         public string Comment { get; set; }
@@ -86,6 +89,7 @@ namespace TransAppWebSite.Models
             task.TaskStatus = (int)this.TaskStatus;
             task.Comment = this.Comment;
             //task.ContactId = this.Contact.Id;
+            task.RowStatus = this.RowStatus;
 
             return task;
         }
