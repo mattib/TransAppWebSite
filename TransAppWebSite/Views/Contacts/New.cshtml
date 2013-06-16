@@ -39,7 +39,7 @@
     @Html.TextBoxFor(m => m.Address.StreetName)
     <br/>
     @Html.Label("Street Number: ")
-    @Html.TextBoxFor(m => m.Address.StreetNumber, new { @Value = (Model.Address.StreetNumber != null ?Model.Address.StreetNumber.ToString() :string.Empty) })
+    @Html.TextBoxFor(m => m.Address.StreetNumber)//, new { @Value = (Model.Address.StreetNumber != null ?Model.Address.StreetNumber.ToString() :string.Empty) })
     <br/>
     @Html.Label("City: ")
     @Html.TextBoxFor(m => m.Address.City)
