@@ -9,32 +9,33 @@ namespace TransAppWebSite.Models
 {
     public class AddressesListViewModel
     {
-    //    public AddressesListViewModel(int comapnyId)
-    //    {
-    //        var addressesList = new List<AddressModel>();
-    //        var addressesDataSource = new AddressesDataSource();
-    //        var addresses = addressesDataSource.GetAddress(comapnyId);
-    //        foreach (var address in addresses)
-    //        {
-    //            addressesList.Add(new AddressModel(address));
-    //        }
-    //        CompaniesUsersList = addressesList;                                       
-    //    }
-    //    public class AddressModel
-    //    {
-    //        public AddressModel(Address address)
-    //        {
-    //            Id = address.Id;
-    //            AddressString = string.Format("{0} {1}, {2}", address.StreetName, address.StreetNumber, address.City);
-    //        }
-    //        public int Id { get; set; }
-    //        public string AddressString { get; set; }
-    //    }
+        public AddressesListViewModel(int comapnyId)
+        {
+            //implement the company Id in the future
+            var addressesList = new List<AddressModel>();
+            var addressesDataSource = new AddressesDataSource();
+            var addresses = addressesDataSource.GetAllAddresses();
+            foreach (var address in addresses)
+            {
+                addressesList.Add(new AddressModel(address));
+            }
+            CompaniesAddressesList = addressesList;
+        }
+        public class AddressModel
+        {
+            public AddressModel(Address address)
+            {
+                Id = address.Id;
+                AddressString = string.Format("{0} {1}, {2}", address.StreetName, address.StreetNumber, address.City);
+            }
+            public int Id { get; set; }
+            public string AddressString { get; set; }
+        }
 
-    //    public IEnumerable<AddressModel> CompaniesUsersList;
+        public IEnumerable<AddressModel> CompaniesAddressesList;
 
 
-    //    [DisplayName("Address String")]
-    //    public string AddressString { get; set; }
+        [DisplayName("Address String")]
+        public string AddressString { get; set; }
     }
 }

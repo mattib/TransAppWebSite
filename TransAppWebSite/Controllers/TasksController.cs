@@ -58,6 +58,13 @@ namespace TransAppWebSite.Controllers
         public ActionResult New()
         {
             var task = new Task();
+            task.ReciverAddress = new Address();
+            task.SenderAddress = new Address();
+            task.User = new User();
+            task.User.Id = 1;
+            task.Company = new Company();
+            task.Company.Id = 1;
+            task.Contact = new Contact();
             var taskViewModel = new TaskViewModel(task);
             return View(taskViewModel);
         }

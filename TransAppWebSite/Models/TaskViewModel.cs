@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using TransAppWebSite.DataSources;
@@ -34,23 +36,29 @@ namespace TransAppWebSite.Models
             Id = task.Id;
             DeliveryNumber = task.DeliveryNumber;
             Comment = task.Comment;
-            User = GetUser(task.Id);
+            User = task.User;
             TaskStatus = (TaskStatus)task.TaskStatus;
             Company = User.Company;
-            UsersListList = new UsersListViewModel(task.Company.Id);
+            ReciverAddress = task.ReciverAddress;
+            SenderAddress = task.SenderAddress;
+            UsersList = new UsersListViewModel(task.Company.Id);
+            AddressesList = new AddressesListViewModel(task.Company.Id);
             Created = task.Created;
             PickedUpAt = task.PickedUpAt;
             DeliveredAt = task.DeliveredAt;
-            PickUpTime = task.PickUpTime;
+            if (!PickUpTime.HasValue)
+            {
+                PickUpTime = DateTime.Now;
+            }
+            else 
+            {
+                PickUpTime = task.PickUpTime;
+            }
+
+            
             DeliveryTime = task.DeliveryTime;
             LastModified = task.LastModified;
             RowStatus = task.RowStatus;
-        }
-
-        private User GetUser(int userId)
-        {
-            var user = m_usersDataSource.GetUser(userId);
-            return user;
         }
 
         public int Id { get; set; }
@@ -64,6 +72,10 @@ namespace TransAppWebSite.Models
         public DateTime? PickedUpAt { get; set; }
         public DateTime? DeliveredAt { get; set; }
         public DateTime? PickUpTime { get; set; }
+
+        [DisplayName("Delivery Time")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy HH:mm}")]
+
         public DateTime? DeliveryTime { get; set; }
         public DateTime LastModified { get; set; }
         public int RowStatus { get; set; }
@@ -76,20 +88,30 @@ namespace TransAppWebSite.Models
         //insert generic data in future
         //public string DataExtention { get; set; }
 
-        public UsersListViewModel UsersListList { get; set; }
+        public UsersListViewModel UsersList { get; set; }
+        public AddressesListViewModel AddressesList { get; set; }
 
         public Task ToTask()
         {
             var task = new Task();
             task.Id = this.Id;
+            task.User = new User();
             task.User.Id = this.User.Id;
-            //task.CompanyId = this.Company.Id;
-            //task.SenderAddressId = this.SenderAddress.Id;
-            //task.ReciverAddressId = this.ReciverAddress.Id;
+            task.Company = new Company();
+            task.Company.Id = 1;//this.Company.Id;
+            task.SenderAddress = new Address();
+            task.SenderAddress.Id = this.SenderAddress.Id;
+
+            task.ReciverAddress = new Address();
+            task.ReciverAddress.Id = this.ReciverAddress.Id;
+            task.DeliveryNumber = this.DeliveryNumber;
             task.TaskStatus = (int)this.TaskStatus;
             task.Comment = this.Comment;
-            //task.ContactId = this.Contact.Id;
+            task.Contact = new Contact();
+            task.Contact.Id =1 ;// this.Contact.Id;
             task.RowStatus = this.RowStatus;
+            task.PickUpTime = this.PickUpTime;
+            task.DeliveryTime = this.DeliveryTime;
 
             return task;
         }

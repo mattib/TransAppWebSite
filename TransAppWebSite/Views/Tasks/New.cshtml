@@ -22,26 +22,27 @@
     @Html.Label("Delivery Number: ") 
     @Html.TextBoxFor(m => m.DeliveryNumber)
     <br/>
-    @Html.Label("User Id: ")
-    @Html.TextBoxFor(m => m.User.Id)
-     <br/>
-    @Html.Label("Company Id: ")
-    @Html.TextBoxFor(m => m.Company.Id)
-     <br/>
-    @Html.Label("Sender Address Id: ")
-    @Html.TextBoxFor(m => m.SenderAddress.Id)
+    @Html.Label("User Name: ")
+
+    @Html.DropDownListFor(m => m.User.Id, new SelectList(Model.UsersList.CompaniesUsersList, "Id", "FullName", Model.UsersList.CompaniesUsersList.First().Id))
+
     <br/>
-    @Html.Label("Reciver Address Id: ")
-    @Html.TextBoxFor(m => m.ReciverAddress.Id)
-     <br/>
+    
+    @Html.Label("Sender Address: ")
+
+    @Html.DropDownListFor(m => m.SenderAddress.Id, new SelectList(Model.AddressesList.CompaniesAddressesList, "Id", "AddressString", Model.AddressesList.CompaniesAddressesList.First().Id))
+
+    <br/>
+    
+    @Html.Label("Reciver Address: ")
+
+    @Html.DropDownListFor(m => m.ReciverAddress.Id, new SelectList(Model.AddressesList.CompaniesAddressesList, "Id", "AddressString", Model.AddressesList.CompaniesAddressesList.First().Id))
+
+    <br/>
+    
     @Html.Label("Comment: ")
+        
     @Html.TextBoxFor(m => m.Comment)
-    <br/>@*
-    @Html.Label("Last Modified: ")
-    @Html.TextBoxFor(m => m.LastModified.ToString())
-    *@<br/>
-    @Html.Label("Company Id: ")
-    @Html.TextBoxFor(m => m.Company.Id)
     
     @Html.HiddenFor(m => m.LastModified)  
     @Html.HiddenFor(m => m.RowStatus)

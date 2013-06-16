@@ -24,36 +24,50 @@
     <br/>
     @Html.Label("User Name: ")
 
-    @Html.DropDownListFor(m => m.User.Id, new SelectList(Model.UsersListList.CompaniesUsersList, "Id", "FullName", Model.UsersListList.CompaniesUsersList.First().Id))
+    @Html.DropDownListFor(m => m.User.Id, new SelectList(Model.UsersList.CompaniesUsersList, "Id", "FullName", Model.UsersList.CompaniesUsersList.First().Id))
 
-     <br/>@*
-    @Html.Label("Company Name: ")
-    @Html.TextBoxFor(m => m.Company.Name)
-     <br/>
-    @Html.Label("Sender Address Id: ")
-    @Html.TextBoxFor(m => m.SenderAddressId)
     <br/>
-    @Html.Label("Reciver Address Id: ")
-    @Html.TextBoxFor(m => m.ReciverAddressId)
-     <br/>*@
+    
+    @Html.Label("Sender Address: ")
+
+    @Html.DropDownListFor(m => m.SenderAddress.Id, new SelectList(Model.AddressesList.CompaniesAddressesList, "Id", "AddressString", Model.AddressesList.CompaniesAddressesList.First().Id))
+
+    <br/>
+    
+    @Html.Label("Reciver Address: ")
+
+    @Html.DropDownListFor(m => m.ReciverAddress.Id, new SelectList(Model.AddressesList.CompaniesAddressesList, "Id", "AddressString", Model.AddressesList.CompaniesAddressesList.First().Id))
+
+    <br/>@*
+    
+    @Html.Label("Pick Up Time: ")
+
+    if(!Model.PickUpTime.HasValue)
+    {
+        Model.PickUpTime = new DateTime();
+        Model.PickUpTime = DateTime.Now;
+    }
+   
+    @Html.TextBoxFor(m => m.PickUpTime.Value)
+
+    <br/>
+    
+     @Html.Label("Delivery Time: ")
+
+    if(!Model.DeliveryTime.HasValue)
+    {
+        Model.DeliveryTime = new DateTime();
+        Model.DeliveryTime = DateTime.Now.AddDays(1);
+    }
+   
+   @Html.EditorFor(model => model.DeliveryTime.Value)//, new { @class = "jquery_datepicker", @Value = Model.DeliveryTime.Value.ToString("dd-MM-yyyy HH:mm") })
+
+    <br/>*@
     
     @Html.Label("Comment: ")
-        
     
     @Html.TextBoxFor(m => m.Comment)
       
-    <br/>@*
-    @Html.Label("Last Modified: ")
-    @Html.TextBoxFor(m => m.LastModified.ToString())
-    <br/>
-    @Html.Label("Company Id: ")
-    @Html.TextBoxFor(m => m.CompanyId)
-    <br/>
-    @Html.Label("Accepted: ")
-    @Html.TextBoxFor(m => m.Accepted)
-    *@
-    @Html.HiddenFor(m => m.LastModified)  
-    //@Html.HiddenFor(m => m.RowStatus)
     @Html.HiddenFor(m => m.Id)
     @Html.HiddenFor(m => m.Company)
     @Html.HiddenFor(m => m.Contact)
