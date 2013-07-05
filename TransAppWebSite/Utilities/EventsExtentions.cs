@@ -69,8 +69,12 @@ namespace TransAppWebSite.Utilities
                     writer.Write(item.Task.Id.ToString());
                     writer.RenderEndTag();
                     writer.RenderBeginTag(HtmlTextWriterTag.Td);
-                    var tt = (EventType)item.EventType;
-                    writer.Write(((EventType)item.EventType).ToString());
+                    var eventType = string.Empty;
+                    if (item.EventType.HasValue)
+                    {
+                        eventType = ((EventType)item.EventType).ToString();
+                    }
+                    writer.Write(eventType);
                     writer.RenderEndTag();
                     writer.RenderBeginTag(HtmlTextWriterTag.Td);
                     writer.AddAttribute(HtmlTextWriterAttribute.Href, "/Events/Details/" + item.Id);

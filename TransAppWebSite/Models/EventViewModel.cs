@@ -7,6 +7,11 @@ namespace TransAppWebSite.Models
 {
     public class EventViewModel
     {
+    
+        public EventViewModel()
+        {
+        }
+
         public EventViewModel(Event eventItem)
         {
             this.Id = eventItem.Id;

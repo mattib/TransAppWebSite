@@ -73,7 +73,10 @@ namespace TransAppWebSite.Controllers
         public ActionResult New(TaskViewModel taskViewModel)
         {
             var task = taskViewModel.ToTask();
+            
             m_tasksDataSource.SaveTask(task);
+
+            var eventsDataSource = new EventsDataSource();
 
             return RedirectToAction("Index");
         }
