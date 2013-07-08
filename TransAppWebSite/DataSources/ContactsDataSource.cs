@@ -10,7 +10,7 @@ using TransAppWebSite.Models;
 
 namespace TransAppWebSite.DataSources
 {
-    public class ContactsDataSource : TransAppDataSource
+    public class ContactsDataSource : TransAppConfiguration
     {
         private string m_contactsUrl;
 

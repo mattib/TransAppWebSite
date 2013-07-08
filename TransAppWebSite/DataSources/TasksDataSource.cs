@@ -10,7 +10,7 @@ using TransAppWebSite.Models;
 
 namespace TransAppWebSite.DataSources
 {
-    public class TasksDataSource : TransAppDataSource
+    public class TasksDataSource : TransAppConfiguration
     {
         private string m_tasksUrl;
 

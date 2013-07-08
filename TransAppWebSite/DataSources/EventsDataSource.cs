@@ -10,7 +10,7 @@ using TransAppWebSite.Models;
 
 namespace TransAppWebSite.DataSources
 {
-    public class EventsDataSource : TransAppDataSource
+    public class EventsDataSource : TransAppConfiguration
     {
         private string m_eventsUrl;
 

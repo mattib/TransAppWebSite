@@ -196,7 +196,7 @@
     <Compile Include="DataSources\CustomersDataSource.cs" />
     <Compile Include="DataSources\TasksDataSource.cs" />
     <Compile Include="DataSources\EventsDataSource.cs" />
-    <Compile Include="DataSources\TransAppDataSource.cs" />
+    <Compile Include="DataSources\TransAppConfiguration.cs" />
     <Compile Include="DataSources\UsersDataSource.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">

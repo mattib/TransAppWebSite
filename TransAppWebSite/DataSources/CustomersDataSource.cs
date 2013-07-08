@@ -11,7 +11,7 @@ using TransAppWebSite.Models;
 
 namespace TransAppWebSite.DataSources
 {
-    public class CustomersDataSource : TransAppDataSource
+    public class CustomersDataSource : TransAppConfiguration
     {
         private string m_customersUrl;
 

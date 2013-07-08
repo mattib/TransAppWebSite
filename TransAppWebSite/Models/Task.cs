@@ -25,5 +25,9 @@ namespace TransAppWebSite.Models
         public int RowStatus { get; set; }
         public int? TaskType { get; set; }
         public string DataExtention { get; set; }
+        public string SignatureId { get; set; }
+        public string ImageId { get; set; }
+        public string UserComment { get; set; }
+        public bool? Rejected { get; set; }
     }
 }

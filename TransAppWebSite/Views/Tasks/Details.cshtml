@@ -24,6 +24,14 @@
     @Html.Label("Delivery Number :") 
     
     @Html.Label(Model.DeliveryNumber)
+
+    <br />
+    
+    @Html.Label("Comment :") 
+
+    @Html.Label(Model.Comment)
+
+    
     
     @if (Model.User != null)
     {
@@ -62,7 +70,7 @@
    
     <br />
 
-    @Html.Label("Task Status :") 
+    @Html.Label("Task :") 
 
     @Html.Label(Enum.GetName(Model.TaskStatus.GetType(), Model.TaskStatus))
 
@@ -99,14 +107,46 @@
 
     <br />
 
-    @Html.Label("Last Modified :") 
+    @Html.Label("Last Modified :")
 
     @Html.Label(Model.LastModified.ToLocalTime().ToString("dd-MM-yyyy hh:mm"))
 
     <br />
-      
-    @Html.Label("Comment :") 
 
-    @Html.Label(Model.Comment)
+    @if (Model.Rejected.HasValue)
+        {
+            if (Model.Rejected.Value)
+            {
+                @Html.Label("Task Has Been Rejected") 
+            }
+            else
+            {
+                @Html.Label("Task Has Been Accepted :") 
+            }
+
+        <br />
+    }
+
+    @Html.Label("User Comment :") 
+    
+    @Html.Label(Model.UserComment != null? Model.UserComment : string.Empty)
+
+    <br />
+      
+    @if (!string.IsNullOrEmpty(Model.ImageId))
+    {
+        @Html.Label("Picture :") 
+
+        <img src="@Model.ImageUri" alt="Picture" width="400" height="300">
+
+        <br />
+    }
+      
+    @if (!string.IsNullOrEmpty(Model.SignatureId))
+    {
+        @Html.Label("Signature :") 
+
+        <img src="@Model.SignatureUri" alt="Signature" width="400" height="300">
+    }
 
     

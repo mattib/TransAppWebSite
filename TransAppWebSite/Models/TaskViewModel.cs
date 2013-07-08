@@ -59,6 +59,20 @@ namespace TransAppWebSite.Models
             DeliveryTime = task.DeliveryTime;
             LastModified = task.LastModified;
             RowStatus = task.RowStatus;
+
+            ImageId = task.ImageId;
+            var baseUri = new Uri(TransAppConfiguration.ImageRepositoryAddress);
+            if (!string.IsNullOrEmpty(task.ImageId))
+            {
+                ImageUri = new Uri(baseUri, task.ImageId + "/");
+            }
+            if (!string.IsNullOrEmpty(task.SignatureId))
+            {
+                SignatureUri = new Uri(baseUri, task.SignatureId + "/");
+            }
+
+            SignatureId = task.SignatureId;
+            UserComment = task.UserComment;
         }
 
         public int Id { get; set; }
@@ -87,6 +101,12 @@ namespace TransAppWebSite.Models
         //public int TaskType { get; set; }
         //insert generic data in future
         //public string DataExtention { get; set; }
+        public string SignatureId { get; set; }
+        public string ImageId { get; set; }
+        public string UserComment { get; set; }
+        public Uri ImageUri { get; set; }
+        public Uri SignatureUri { get; set; }
+        public bool? Rejected { get; set; }
 
         public UsersListViewModel UsersList { get; set; }
         public AddressesListViewModel AddressesList { get; set; }
@@ -112,6 +132,10 @@ namespace TransAppWebSite.Models
             task.RowStatus = this.RowStatus;
             task.PickUpTime = this.PickUpTime;
             task.DeliveryTime = this.DeliveryTime;
+            task.ImageId = this.ImageId;
+            task.SignatureId = this.SignatureId;
+            task.UserComment = this.UserComment;
+            task.Rejected = this.Rejected;
 
             return task;
         }
