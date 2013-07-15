@@ -57,6 +57,7 @@ namespace TransAppWebSite.Utilities
 
                 foreach (var task in tasks)
                 {
+                    var taskCompleted = task.TaskStatus == TaskStatus.Finished;
                     writer.RenderBeginTag(HtmlTextWriterTag.Tr);
                     writer.RenderBeginTag(HtmlTextWriterTag.Td);
                     writer.Write(task.DeliveryNumber);
@@ -97,16 +98,23 @@ namespace TransAppWebSite.Utilities
                     writer.RenderEndTag();
                     writer.RenderEndTag();
                     writer.RenderBeginTag(HtmlTextWriterTag.Td);
-                    writer.AddAttribute(HtmlTextWriterAttribute.Href, "/Tasks/Edit/" + task.Id);
-                    writer.RenderBeginTag(HtmlTextWriterTag.A);
-                    writer.Write("Update");
-                    writer.RenderEndTag();
+                    if (!taskCompleted)
+                    {
+                        
+                        writer.AddAttribute(HtmlTextWriterAttribute.Href, "/Tasks/Edit/" + task.Id);
+                        writer.RenderBeginTag(HtmlTextWriterTag.A);
+                        writer.Write("Update");
+                        writer.RenderEndTag();
+                    }
                     writer.RenderEndTag();
                     writer.RenderBeginTag(HtmlTextWriterTag.Td);
-                    writer.AddAttribute(HtmlTextWriterAttribute.Href, "/Tasks/Delete/" + task.Id);
-                    writer.RenderBeginTag(HtmlTextWriterTag.A);
-                    writer.Write("Delete");
-                    writer.RenderEndTag();
+                    if (!taskCompleted)
+                    {
+                        writer.AddAttribute(HtmlTextWriterAttribute.Href, "/Tasks/Delete/" + task.Id);
+                        writer.RenderBeginTag(HtmlTextWriterTag.A);
+                        writer.Write("Delete");
+                        writer.RenderEndTag();
+                    }
                     writer.RenderEndTag();
                     writer.RenderEndTag();
                 }

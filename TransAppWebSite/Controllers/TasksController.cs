@@ -49,6 +49,15 @@ namespace TransAppWebSite.Controllers
         [HttpPost]
         public ActionResult Edit(TaskViewModel taskViewModel)
         {
+            if (taskViewModel.DeliveryTime < DateTime.Today)
+            {
+                taskViewModel.DeliveryTime = DateTime.Now;
+            }
+
+            if (taskViewModel.PickUpTime < DateTime.Today)
+            {
+                taskViewModel.PickUpTime = DateTime.Now;
+            }
             var task = taskViewModel.ToTask();
             m_tasksDataSource.SaveTask(task);
 

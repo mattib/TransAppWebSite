@@ -46,17 +46,24 @@ namespace TransAppWebSite.Models
             Created = task.Created;
             PickedUpAt = task.PickedUpAt;
             DeliveredAt = task.DeliveredAt;
-            if (!PickUpTime.HasValue)
+            if (!task.PickUpTime.HasValue)
             {
                 PickUpTime = DateTime.Now;
             }
             else 
             {
-                PickUpTime = task.PickUpTime;
+                PickUpTime = task.PickUpTime.Value;
             }
 
-            
-            DeliveryTime = task.DeliveryTime;
+            if (!task.DeliveryTime.HasValue)
+            {
+                DeliveryTime = DateTime.Now;
+            }
+            else
+            {
+                DeliveryTime = task.DeliveryTime.Value;
+            }
+
             LastModified = task.LastModified;
             RowStatus = task.RowStatus;
 
@@ -64,11 +71,11 @@ namespace TransAppWebSite.Models
             var baseUri = new Uri(TransAppConfiguration.ImageRepositoryAddress);
             if (!string.IsNullOrEmpty(task.ImageId))
             {
-                ImageUri = new Uri(baseUri, task.ImageId + "/");
+                ImageUri = new Uri(baseUri, task.ImageId + ".jpg/");
             }
             if (!string.IsNullOrEmpty(task.SignatureId))
             {
-                SignatureUri = new Uri(baseUri, task.SignatureId + "/");
+                SignatureUri = new Uri(baseUri, task.SignatureId + ".jpg/");
             }
 
             SignatureId = task.SignatureId;
@@ -85,12 +92,10 @@ namespace TransAppWebSite.Models
         public DateTime Created { get; set; }
         public DateTime? PickedUpAt { get; set; }
         public DateTime? DeliveredAt { get; set; }
-        public DateTime? PickUpTime { get; set; }
-
-        [DisplayName("Delivery Time")]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy HH:mm}")]
-
-        public DateTime? DeliveryTime { get; set; }
+        [Display(Name = "PickUpTime:"), DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy HH:mm}")]
+        public DateTime PickUpTime { get; set; }
+        [Display(Name = "DeliveryTime:"), DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy HH:mm}")]
+        public DateTime DeliveryTime { get; set; }
         public DateTime LastModified { get; set; }
         public int RowStatus { get; set; }
         //public bool Accepted { get; set; }

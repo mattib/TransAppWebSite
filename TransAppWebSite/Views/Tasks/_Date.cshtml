@@ -1,0 +1,13 @@
+﻿@*@model DateTime
+
+  @Html.TextBox("date", Model.ToString("dd/MM/yy"), new { @class = "date" })
+
+  @Html.TextBox("time", Model.ToString("HH:mm"), new { @class = "time" })
+
+
+ @Html.Partial("_jQueryScripts")
+<script>
+    $(document).ready(function () {
+        $('.date').datepicker();
+    });
+</script>*@

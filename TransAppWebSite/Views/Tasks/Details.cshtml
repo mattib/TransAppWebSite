@@ -85,13 +85,13 @@
     
     @Html.Label("Pick Up Time :")
 
-    @(Model.PickUpTime.HasValue ? Html.Label(Model.PickUpTime.Value.ToLocalTime().ToString("dd-MM-yyyy hh:mm")) : Html.Label(string.Empty))
+    @Html.Label(Model.PickUpTime.ToLocalTime().ToString("dd-MM-yyyy hh:mm"))
 
     <br />
 
     @Html.Label("Delivery Time :") 
 
-    @(Model.DeliveryTime.HasValue ? Html.Label(Model.DeliveryTime.Value.ToLocalTime().ToString("dd-MM-yyyy hh:mm")) : Html.Label(string.Empty))
+    @Html.Label(Model.DeliveryTime.ToLocalTime().ToString("dd-MM-yyyy hh:mm"))
 
     <br />
     
@@ -148,5 +148,7 @@
 
         <img src="@Model.SignatureUri" alt="Signature" width="400" height="300">
     }
+
+
 
     

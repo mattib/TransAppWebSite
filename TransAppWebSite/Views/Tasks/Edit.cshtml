@@ -38,39 +38,32 @@
 
     @Html.DropDownListFor(m => m.ReciverAddress.Id, new SelectList(Model.AddressesList.CompaniesAddressesList, "Id", "AddressString", Model.AddressesList.CompaniesAddressesList.First().Id))
 
-    <br/>@*
+    <br/>
     
     @Html.Label("Pick Up Time: ")
 
-    if(!Model.PickUpTime.HasValue)
-    {
-        Model.PickUpTime = new DateTime();
-        Model.PickUpTime = DateTime.Now;
-    }
-   
-    @Html.TextBoxFor(m => m.PickUpTime.Value)
-
+    @Html.EditorFor(m => m.PickUpTime)
+    
     <br/>
     
-     @Html.Label("Delivery Time: ")
+    @Html.Label("Delivery Time: ")
+  
+    @Html.EditorFor(m => m.DeliveryTime)
 
-    if(!Model.DeliveryTime.HasValue)
-    {
-        Model.DeliveryTime = new DateTime();
-        Model.DeliveryTime = DateTime.Now.AddDays(1);
-    }
-   
-   @Html.EditorFor(model => model.DeliveryTime.Value)//, new { @class = "jquery_datepicker", @Value = Model.DeliveryTime.Value.ToString("dd-MM-yyyy HH:mm") })
-
-    <br/>*@
+    <br/>
     
     @Html.Label("Comment: ")
     
     @Html.TextBoxFor(m => m.Comment)
-      
+
+    @Html.HiddenFor(m => m.LastModified)
+    @Html.HiddenFor(m => m.Created)  
     @Html.HiddenFor(m => m.Id)
     @Html.HiddenFor(m => m.Company)
     @Html.HiddenFor(m => m.Contact)
+    @Html.HiddenFor(m => m.TaskStatus)
+    @Html.HiddenFor(m => m.Rejected)
+    @Html.HiddenFor(m => m.UserComment)
 
     <br />
     <input type="Submit"  id='EditTask' value='Update' />
@@ -81,3 +74,13 @@
 <br />
 @Html.ActionLink("Home", "Index", "Home")
 </article>
+
+@* @Html.Partial("_jQueryScripts")
+<script>
+    $(document).ready(function () {
+        $('.date').datepicker();
+
+
+        //$('.date').click(function()
+    });
+</script>*@

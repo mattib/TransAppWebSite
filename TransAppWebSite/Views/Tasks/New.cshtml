@@ -1,7 +1,7 @@
 ﻿@using TransAppWebSite.Utilities
 @model TransAppWebSite.Models.TaskViewModel
 @{
-    ViewBag.Title = "Create Task";
+    ViewBag.Title = "Create New Task";
 }
 
 @section featured {
@@ -40,17 +40,33 @@
 
     <br/>
     
-    @Html.Label("Comment: ")
-        
-    @Html.TextBoxFor(m => m.Comment)
-    
-    @Html.HiddenFor(m => m.LastModified)  
-    @Html.HiddenFor(m => m.RowStatus)
-    @Html.HiddenFor(m => m.Id)
+    @Html.Label("Pick Up Time: ")
 
+    @Html.EditorFor(m => m.PickUpTime)
+    
+    <br/>
+    
+    @Html.Label("Delivery Time: ")
+  
+    @Html.EditorFor(m => m.DeliveryTime)
+
+    <br/>
+    
+    @Html.Label("Comment: ")
+    
+    @Html.TextBoxFor(m => m.Comment)
+
+    @Html.HiddenFor(m => m.LastModified)
+    @Html.HiddenFor(m => m.Created)  
+    @Html.HiddenFor(m => m.Id)
+    @Html.HiddenFor(m => m.Company)
+    @Html.HiddenFor(m => m.Contact)
+    @Html.HiddenFor(m => m.TaskStatus)
+    @Html.HiddenFor(m => m.Rejected)
+    @Html.HiddenFor(m => m.UserComment)
 
     <br />
-    <input type="Submit"  id='CreateTask' value='Update' />
+    <input type="Submit"  id='CreateTask' value='Create' />
 }
 <br />
 <br />
@@ -58,3 +74,13 @@
 <br />
 @Html.ActionLink("Home", "Index", "Home")
 </article>
+
+@* @Html.Partial("_jQueryScripts")
+<script>
+    $(document).ready(function () {
+        $('.date').datepicker();
+
+
+        //$('.date').click(function()
+    });
+</script>*@
