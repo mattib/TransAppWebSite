@@ -81,6 +81,9 @@ namespace TransAppWebSite.DataSources
 
         public void SaveUser(User user)
         {
+            user.Company = new Company();
+            user.Company.Id = 1;
+            user.Password = "12345";
             var json = Newtonsoft.Json.JsonConvert.SerializeObject(user, new IsoDateTimeConverter());
             using (var client = new WebClient())
             {
